@@ -15,6 +15,7 @@ app.get("/api", (req, res) => {
 });
 
 app.use("/api/users", require("./routes/user"));
+app.use("/api/auth", require("./routes/auth"));
 
 //serve static if production
 if (process.env.NODE_ENV === "production") {

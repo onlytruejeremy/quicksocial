@@ -168,7 +168,7 @@ const TopNews = (props) => {
         <Container className="p-1 w-100">
           <Card className="w-75 mx-auto p-1 bg-dark border-light m-5">
             <Card.Body className=" mx-auto ">
-              <Card.Title className="d-flex">
+              <Card.Title className="d-flex mx-auto">
                 <Button
                   className="mx-5 mt-2"
                   variant="outline-light"
