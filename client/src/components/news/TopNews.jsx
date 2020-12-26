@@ -165,23 +165,25 @@ const TopNews = (props) => {
         <ToastContainer />
       </Container>
       {arts.length > 0 ? (
-        <Container className="p-1">
-          <Card className="w-50 mx-auto p-1 bg-dark border-light m-5">
-            <Card.Body className="d-flex flex-row mx-auto wrap-nowrap">
-              <Button
-                className="mx-5"
-                variant="outline-light"
-                onClick={fetchPrev}
-              >
-                Prev
-              </Button>
-              <Button
-                className="mx-5"
-                variant="outline-light"
-                onClick={fetchNext}
-              >
-                Next
-              </Button>
+        <Container className="p-1 w-100">
+          <Card className="w-75 mx-auto p-1 bg-dark border-light m-5">
+            <Card.Body className=" mx-auto ">
+              <Card.Title className="d-flex">
+                <Button
+                  className="mx-5 mt-2"
+                  variant="outline-light"
+                  onClick={fetchPrev}
+                >
+                  Prev
+                </Button>
+                <Button
+                  className="mx-5 mt-2"
+                  variant="outline-light"
+                  onClick={fetchNext}
+                >
+                  Next
+                </Button>
+              </Card.Title>
             </Card.Body>
           </Card>
         </Container>
