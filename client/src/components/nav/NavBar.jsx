@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const NavBar = (props) => {
-  const [authed, setAuthed] = useState(true);
+  const [authed, setAuthed] = useState(false);
   const history = useHistory();
   const linkChange = (e) => {
     e.preventDefault();
@@ -52,7 +52,9 @@ const NavBar = (props) => {
           <Nav.Link className="text-primary" name="home" onClick={linkChange}>
             Home
           </Nav.Link>
-
+          <Nav.Link className="text-primary" name="news" onClick={linkChange}>
+            News
+          </Nav.Link>
           {authed ? (
             <>
               <Nav.Link
@@ -85,13 +87,14 @@ const NavBar = (props) => {
               </Nav.Link>
             </>
           ) : (
-            <Nav.Link
+            /*  <Nav.Link
               className="text-primary"
               name="login"
               onClick={linkChange}
             >
               LogIn
-            </Nav.Link>
+            </Nav.Link> */
+            ""
           )}
         </Nav>
       </Navbar.Collapse>
