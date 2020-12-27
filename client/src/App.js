@@ -7,20 +7,17 @@ import NavBar from "./components/nav/NavBar";
 import Main from "./components/main/Main";
 import TopNews from "./components/news/TopNews";
 import Account from "./components/profile/Account";
+import * as userService from "./services/users";
+import PrivateRoute from "./context/PrivateRoute";
+import Profile from "./components/profile/Profile";
 export default function App() {
   return (
     <div className="App">
       <NavBar />
       <Switch>
-        <Route path="/account">
-          <Account />
-        </Route>
-        <Route path="/news">
-          <TopNews />
-        </Route>
-        <Route path="/profile">
-          <p>Profile Page Not Ready Yet</p>
-        </Route>
+        <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
+        <PrivateRoute path="/news" component={TopNews}></PrivateRoute>
+        <PrivateRoute path="/account" component={Account}></PrivateRoute>
         <Route path="/login" exact>
           <Register />
         </Route>

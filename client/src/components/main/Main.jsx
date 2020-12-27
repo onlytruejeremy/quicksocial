@@ -37,14 +37,6 @@ const Main = (props) => {
     }
   };
 
-  /*
-
-<Button variant="outline-light" name="login" onClick={pageChange}>
-              Get Started
-            </Button>
-
-
-  */
   return (
     <>
       <Container>
@@ -59,11 +51,11 @@ const Main = (props) => {
           <p>
             <Button
               variant="outline-light"
-              name="news"
+              name="login"
               onClick={pageChange}
               className="mx-auto m-3 p-3"
             >
-              Let's Go See The News!
+              Get Started!
             </Button>
           </p>
         </Jumbotron>

@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
   try {
     con.query(sql, (err, result) => {
       if (err) {
-        res.status(500).send("DB Error");
+        res.status(500).send("Database Error");
         console.warn(err.message);
       }
       res.status(200).json(result[0]);
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
           [firstName, lastName, email, hashedPassword],
           (err, result) => {
             if (err) {
-              res.status(500).send("DB Error");
+              res.status(500).send("Database Error");
               console.warn(err.message);
             }
             res.status(201).json(result);
@@ -67,7 +67,7 @@ router.put("/", async (req, res) => {
       [userId, firstName, lastName, email, password],
       (err, result) => {
         if (err) {
-          res.status(500).send("DB Error");
+          res.status(500).send("Database Error");
           console.warn(err);
         }
         res.status(201).json("Updated User");

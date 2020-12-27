@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Button, Form, Collapse } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import * as userService from "../../services/users";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../context/Auth";
+
 const SignInForm = (props) => {
+  const { setCurrentUser } = useContext(AuthContext);
+  const history = useHistory();
   const registerSchema = Yup.object().shape({
     email: Yup.string()
       .email("Must be an email")
@@ -20,7 +26,27 @@ const SignInForm = (props) => {
     },
     validationSchema: registerSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
+      userService
+        .loginUser(values)
+        .then((res) => {
+          const userInfo = res.data.accessToken;
+          if (userInfo !== null) {
+            userService
+              .getUserInfo(userInfo)
+              .then((res) => {
+                setCurrentUser(res.data);
+              })
+              .catch((err) => {
+                setCurrentUser(null);
+              });
+          } else {
+            setCurrentUser(null);
+          }
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
   return (

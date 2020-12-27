@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import {
   Nav,
@@ -9,10 +9,10 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer, useToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../context/Auth";
 const NavBar = (props) => {
-  const [authed, setAuthed] = useState(true);
   const history = useHistory();
   const linkChange = (e) => {
     e.preventDefault();
@@ -33,12 +33,15 @@ const NavBar = (props) => {
         history.push("/profile");
         break;
       case "logout":
-        toast.warn("Auth Functions Not Ready!");
+        setCurrentUser(null);
+        history.push("/");
         break;
       default:
         break;
     }
   };
+
+  const { setCurrentUser, currentUser } = useContext(AuthContext);
   return (
     <Navbar bg="dark" expand="sm">
       <Navbar.Brand className="text-white ml-5">
@@ -52,7 +55,7 @@ const NavBar = (props) => {
           <Nav.Link className="text-primary" name="home" onClick={linkChange}>
             Home
           </Nav.Link>
-          {authed ? (
+          {!!currentUser ? (
             <>
               <Nav.Link
                 className="text-primary"
@@ -77,21 +80,20 @@ const NavBar = (props) => {
               </Nav.Link>
               <Nav.Link
                 className="text-primary"
-                name="login"
+                name="logout"
                 onClick={linkChange}
               >
                 Sign Out
               </Nav.Link>
             </>
           ) : (
-            /*  <Nav.Link
+            <Nav.Link
               className="text-primary"
               name="login"
               onClick={linkChange}
             >
               LogIn
-            </Nav.Link> */
-            ""
+            </Nav.Link>
           )}
         </Nav>
       </Navbar.Collapse>
