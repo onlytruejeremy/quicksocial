@@ -7,19 +7,7 @@ const Dash = (props) => {
 
   const buttonHandler = (e) => {
     e.preventDefault();
-    switch (e.target.name) {
-      case "news":
-        history.push("/news");
-        break;
-      case "posts":
-        history.push("/posts");
-        break;
-      case "profile":
-        history.push("/profile");
-        break;
-      default:
-        break;
-    }
+    history.push(`${e.target.getAttribute("name")}`);
   };
   return (
     <Col md={props.size ? props.size : 8} className="mt-5 mb-5 mx-auto">
@@ -36,8 +24,8 @@ const Dash = (props) => {
                 name="profile"
                 onClick={buttonHandler}
               >
-                <i className="fas fa-home">
-                  <small className="p-2" name="friends">
+                <i className="fas fa-home" name="profile">
+                  <small className="p-2" name="profile">
                     My Profile
                   </small>
                 </i>
@@ -48,7 +36,7 @@ const Dash = (props) => {
                 name="posts"
                 onClick={buttonHandler}
               >
-                <i className="fas fa-edit">
+                <i className="fas fa-edit" name="posts">
                   <small className="p-2" name="posts">
                     All Posts
                   </small>
@@ -60,7 +48,7 @@ const Dash = (props) => {
                 name="news"
                 onClick={buttonHandler}
               >
-                <i className="fas fa-newspaper">
+                <i className="fas fa-newspaper" name="news">
                   <small className="p-2" name="news">
                     News
                   </small>
@@ -73,7 +61,7 @@ const Dash = (props) => {
                 onClick={buttonHandler}
                 disabled
               >
-                <i className="fas fa-user">
+                <i className="fas fa-user" name="friends">
                   <small className="p-2" name="friends">
                     Friends
                   </small>
@@ -86,7 +74,7 @@ const Dash = (props) => {
                 onClick={buttonHandler}
                 disabled
               >
-                <i className="fas fa-envelope">
+                <i className="fas fa-envelope" name="messages">
                   <small className="p-2" name="messages">
                     Messages
                   </small>

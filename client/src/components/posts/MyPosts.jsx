@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Container, Toast } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/Auth";
@@ -88,4 +89,4 @@ class MyPosts extends React.Component {
   }
 }
 
-export default MyPosts;
+export default withRouter(MyPosts);

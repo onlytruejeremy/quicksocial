@@ -36,6 +36,8 @@ class MyPosts extends React.Component {
           id={post.postId}
           user={post.userId}
           key={post.postId}
+          firstName={post.firstName}
+          lastName={post.lastName}
         />
       );
     });

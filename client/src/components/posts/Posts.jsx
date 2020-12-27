@@ -47,6 +47,7 @@ const Posts = (props) => {
     e.preventDefault();
     setImageField(!imageField);
   };
+
   return (
     <>
       <Row>

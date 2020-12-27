@@ -18,7 +18,6 @@ export default function App() {
         <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
         <PrivateRoute path="/news" component={TopNews}></PrivateRoute>
         <PrivateRoute path="/account" component={Account}></PrivateRoute>
-        <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
         <PrivateRoute path="/posts" component={AllPosts}></PrivateRoute>
         <Route path="/login" exact>
           <Register />

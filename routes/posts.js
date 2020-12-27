@@ -4,7 +4,7 @@ const con = require("../db/connection");
 const authenticateToken = require("../middleware/authenticateToken");
 
 router.get("/all", (req, res) => {
-  const sql = `select * from posts order by postId desc`;
+  const sql = `call get_all_posts()`;
   try {
     con.query(sql, (err, result) => {
       if (err) {
@@ -12,7 +12,7 @@ router.get("/all", (req, res) => {
         res.status(500).send("Database Error");
       }
       console.log(result);
-      res.status(200).json(result);
+      res.status(200).json(result[0]);
     });
   } catch (error) {
     res.status(500).send("Database Error");

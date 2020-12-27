@@ -6,7 +6,9 @@ import { useFormik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/Auth";
+import { useHistory } from "react-router-dom";
 const PostCard = (props) => {
+  const history = useHistory();
   const deletePost = (e) => {
     e.preventDefault();
     props.remove(props.id);
@@ -61,7 +63,15 @@ const PostCard = (props) => {
       }
     },
   });
-
+  const toUser = (e) => {
+    e.preventDefault();
+    // go to friend profile page (this is for the refresh purposes and not being able to use optional query params anymore, or set it all to use query params and refactor code)
+    /*  history.push(`/profile/${props.user}`, {
+      userId: props.user,
+      firstName: props.firstName,
+      lastName: props.lastName,
+    }); */
+  };
   const [updatedImg, setUpdatedImg] = React.useState(null);
   const [updatedMessage, setUpdatedMessage] = React.useState(null);
   const { currentUser } = React.useContext(AuthContext);
@@ -69,6 +79,20 @@ const PostCard = (props) => {
   return (
     <>
       <Card className="w-100 mt-5 mb-5 bg-dark text-white">
+        {props.firstName && (
+          <Card.Header className="mr-auto">
+            <Card.Text>
+              <Button
+                variant="outline-success"
+                id={props.user}
+                style={{ width: "300px" }}
+                onClick={toUser}
+              >
+                {props.firstName} {props.lastName}
+              </Button>
+            </Card.Text>
+          </Card.Header>
+        )}
         <Card.Img
           className={`p-2`}
           src={updatedImg ? updatedImg : props.img}
