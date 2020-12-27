@@ -3,6 +3,7 @@ import { useHistory, withRouter } from "react-router-dom";
 import { Container, Col, Row, Card, Button, Form } from "react-bootstrap";
 import MyPosts from "../posts/MyPosts";
 import { AuthContext } from "../../context/Auth";
+import Dash from "../dash/Dash";
 
 const Profile = (props) => {
   const history = useHistory();
@@ -12,11 +13,16 @@ const Profile = (props) => {
       case "news":
         history.push("/news");
         break;
+      case "posts":
+        alert("posts");
+        history.push("/posts");
+        break;
       default:
         break;
     }
   };
   const { currentUser } = React.useContext(AuthContext);
+
   return (
     <Container className="mt-5 mx-auto">
       <Row>
@@ -56,70 +62,7 @@ const Profile = (props) => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={8} className="mt-5 mb-5">
-          <Card className="bg-dark border border-light text-light">
-            <Card.Header>
-              <Card.Text>Quick Actions</Card.Text>
-            </Card.Header>
-            <Card.Body>
-              <Col>
-                <Card.Text>
-                  <Button
-                    className="m-1"
-                    variant="outline-light w-75"
-                    name="posts"
-                    onClick={buttonHandler}
-                    disabled
-                  >
-                    <i className="fas fa-edit">
-                      <small className="p-2" name="posts">
-                        All Posts
-                      </small>
-                    </i>
-                  </Button>
-                  <Button
-                    className="m-1"
-                    variant="outline-light w-75"
-                    name="news"
-                    onClick={buttonHandler}
-                  >
-                    <i className="fas fa-newspaper">
-                      <small className="p-2" name="news">
-                        News
-                      </small>
-                    </i>
-                  </Button>
-                  <Button
-                    className="m-1"
-                    variant="outline-light w-75"
-                    name="friends"
-                    onClick={buttonHandler}
-                    disabled
-                  >
-                    <i className="fas fa-user">
-                      <small className="p-2" name="friends">
-                        Friends
-                      </small>
-                    </i>
-                  </Button>{" "}
-                  <Button
-                    className="m-1 w-75"
-                    variant="outline-light"
-                    name="messages"
-                    onClick={buttonHandler}
-                    disabled
-                  >
-                    <i className="fas fa-envelope">
-                      <small className="p-2" name="messages">
-                        Messages
-                      </small>
-                    </i>
-                  </Button>
-                </Card.Text>
-              </Col>
-            </Card.Body>
-          </Card>
-        </Col>
+        <Dash />
       </Row>
       <MyPosts />
     </Container>

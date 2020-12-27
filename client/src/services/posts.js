@@ -61,4 +61,18 @@ export let editPost = (postData) => {
   return axios(config);
 };
 
-export default { newPost, getMyPosts, deletePost, editPost };
+export let getAllPosts = () => {
+  const config = {
+    method: "GET",
+    url: `${postsEndpoint}/all`,
+    withCredentials: true,
+    crossdomain: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  return axios(config);
+};
+
+export default { newPost, getMyPosts, deletePost, editPost, getAllPosts };

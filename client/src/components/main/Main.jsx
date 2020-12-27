@@ -137,6 +137,10 @@ const Main = (props) => {
                   Currently you can register, make posts on your page and view
                   the news!
                 </p>
+                <h4 className="mr-auto text-left">Next Update</h4>
+                <p className="mr-auto text-left">Adding Friends</p>
+                <p className="mr-auto text-left">Post Features</p>
+                <p className="mr-auto text-left">Login Persistence</p>
               </Card.Text>
             </Card.Body>
           </Card>

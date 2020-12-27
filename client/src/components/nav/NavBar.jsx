@@ -26,11 +26,14 @@ const NavBar = (props) => {
       case "news":
         history.push("/news");
         break;
-      case "account":
-        history.push("/account");
-        break;
       case "profile":
         history.push("/profile");
+        break;
+      case "posts":
+        history.push("/posts");
+        break;
+      case "account":
+        history.push("/account");
         break;
       case "logout":
         setCurrentUser(null);
@@ -63,6 +66,13 @@ const NavBar = (props) => {
                 onClick={linkChange}
               >
                 News
+              </Nav.Link>
+              <Nav.Link
+                className="text-primary"
+                name="posts"
+                onClick={linkChange}
+              >
+                Posts
               </Nav.Link>
               <Nav.Link
                 className="text-primary"

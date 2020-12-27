@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../context/Auth";
 const PostCard = (props) => {
   const deletePost = (e) => {
     e.preventDefault();
@@ -63,6 +64,7 @@ const PostCard = (props) => {
 
   const [updatedImg, setUpdatedImg] = React.useState(null);
   const [updatedMessage, setUpdatedMessage] = React.useState(null);
+  const { currentUser } = React.useContext(AuthContext);
   //editPost
   return (
     <>
@@ -131,7 +133,7 @@ const PostCard = (props) => {
             ""
           )}
         </Card.Body>
-        {props.id && (
+        {currentUser.userId == props.user && (
           <Card.Footer>
             {showForm ? (
               ""

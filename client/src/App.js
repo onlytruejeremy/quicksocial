@@ -9,18 +9,17 @@ import Account from "./components/profile/Account";
 import * as userService from "./services/users";
 import PrivateRoute from "./context/PrivateRoute";
 import Profile from "./components/profile/Profile";
+import AllPosts from "./components/posts/AllPosts";
 export default function App() {
   return (
     <div className="App">
       <NavBar />
       <Switch>
-        <Route path="/posts" exact>
-          <p className="mt-5">Not Ready Yet!!!</p>
-        </Route>
         <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
         <PrivateRoute path="/news" component={TopNews}></PrivateRoute>
         <PrivateRoute path="/account" component={Account}></PrivateRoute>
         <PrivateRoute path="/profile" component={Profile}></PrivateRoute>
+        <PrivateRoute path="/posts" component={AllPosts}></PrivateRoute>
         <Route path="/login" exact>
           <Register />
         </Route>

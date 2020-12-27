@@ -3,6 +3,7 @@ import { Container, Col, Row, Card, Button, Fade, Form } from "react-bootstrap";
 import NewsModal from "./NewsModal";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Dash from "../dash/Dash";
 const TopNews = (props) => {
   const [arts, setArts] = useState([]);
   const [singleArtData, setSingleArtData] = useState("");
@@ -140,6 +141,7 @@ const TopNews = (props) => {
   return (
     <>
       <Container>
+        <Dash size={12} />
         <Form
           className="d-inline-flex flex-nowrap mt-5 w-75"
           onSubmit={searchNews}

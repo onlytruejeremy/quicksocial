@@ -53,7 +53,7 @@ const Posts = (props) => {
         <Col md={12} className="mx-auto mb-5">
           <Card className="bg-dark border border-light text-light">
             <Card.Header>
-              <Card.Text>My Posts</Card.Text>
+              <Card.Text>Ready to share something?</Card.Text>
             </Card.Header>
             <Card.Body>
               <Card className="bg-dark border border-secondary">
