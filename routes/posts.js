@@ -38,8 +38,9 @@ router.get("/:userId", (req, res) => {
 router.post("/", (req, res) => {
   const sql = `call insert_post(?,?,?)`;
   const { userId, message, imageUrl } = req.body;
+  const img = imageUrl;
   try {
-    con.query(sql, [userId, message, imageUrl], (err, result) => {
+    con.query(sql, [userId, message, img], (err, result) => {
       if (err) {
         console.warn(err);
         res.status(500).send("Database Error");
@@ -52,10 +53,35 @@ router.post("/", (req, res) => {
 });
 
 router.put("/", (req, res) => {
-  res.send("Route Not Ready");
+  const sql = `call update_post(?, ?, ?)`;
+  const { postId, message, imageUrl } = req.body;
+  const img = imageUrl;
+  try {
+    con.query(sql, [postId, message, img], (err, result) => {
+      if (err) {
+        console.warn(err);
+        res.status(500).send("Database Error");
+      }
+      res.status(201).json("Edited Post");
+    });
+  } catch (error) {
+    res.status(500).send("Database Error");
+  }
 });
 router.delete("/", (req, res) => {
-  res.send("Route Not Ready");
+  const sql = `call delete_post(?)`;
+  const { postId } = req.body;
+  try {
+    con.query(sql, [postId], (err, result) => {
+      if (err) {
+        console.warn(err);
+        res.status(500).send("Database Error");
+      }
+      res.status(201).json("Post Deleted");
+    });
+  } catch (error) {
+    res.status(500).send("Database Error");
+  }
 });
 
 module.exports = router;

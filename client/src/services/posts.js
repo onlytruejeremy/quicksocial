@@ -31,4 +31,34 @@ export let getMyPosts = (id) => {
   return axios(config);
 };
 
-export default { newPost, getMyPosts };
+export let deletePost = (postId) => {
+  const config = {
+    method: "DELETE",
+    url: `${postsEndpoint}`,
+    data: postId,
+    withCredentials: true,
+    crossdomain: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  return axios(config);
+};
+
+export let editPost = (postData) => {
+  const config = {
+    method: "PUT",
+    url: `${postsEndpoint}`,
+    data: postData,
+    withCredentials: true,
+    crossdomain: true,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  return axios(config);
+};
+
+export default { newPost, getMyPosts, deletePost, editPost };

@@ -62,6 +62,7 @@ const RegisterForm = (props) => {
       <Card className="bg-dark text-secondary mt-5 border border-primary text-left">
         <Card.Body>
           <Card.Title className="text-center text-white">Register</Card.Title>
+
           <Form onSubmit={registerFormik.handleSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>First Name</Form.Label>

@@ -1,5 +1,7 @@
 import React from "react";
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, Toast } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../context/Auth";
 import * as postService from "../../services/posts";
 import PostCard from "./PostCard";
@@ -33,13 +35,14 @@ class MyPosts extends React.Component {
           id={post.postId}
           user={post.userId}
           key={post.postId}
+          remove={this.removePost}
         />
       );
     });
   };
   addCard = (data) => {
     let cardInfo = data;
-    const carded = (cardInfo) => {
+    const newCard = (cardInfo) => {
       return (
         <PostCard
           img={cardInfo.imageUrl}
@@ -47,18 +50,39 @@ class MyPosts extends React.Component {
           id={cardInfo.postId}
           user={cardInfo.userId}
           key={cardInfo.postId}
+          remove={this.removePost}
         />
       );
     };
-    const justPosts = Object.assign([], this.state.cards);
-    justPosts.unshift(carded(cardInfo));
-    this.setState({ cards: justPosts });
+    const newPosts = Object.assign([], this.state.cards);
+    newPosts.unshift(newCard(cardInfo));
+    this.setState({ cards: newPosts });
+  };
+
+  removePost = async (id) => {
+    let arr = Object.assign([], this.state.cards);
+    let index;
+    for (let i = 0; i < arr.length; i++) {
+      const element = arr[i];
+      if (element.props.id === id) {
+        index = i;
+      }
+    }
+    let removed = arr.splice(index, 1);
+    let res = await postService.deletePost({ postId: removed[0].props.id });
+    if (res.data == "Post Deleted") {
+      this.setState({ cards: arr });
+      toast.success("Removed Posts");
+    } else {
+      toast.error("Could Not Remove");
+    }
   };
   render() {
     return (
       <Container>
         <Posts newCard={this.addCard} />
         {this.state.cards}
+        <ToastContainer />
       </Container>
     );
   }
