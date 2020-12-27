@@ -7,8 +7,6 @@ import {
   Card,
   Container,
   CardColumns,
-  OverlayTrigger,
-  Tooltip,
   Alert,
 } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -30,7 +28,7 @@ const Main = (props) => {
         history.push("/news");
         break;
       case "connections":
-        history.push("/connections");
+        history.push("/profile");
         break;
       default:
         break;
@@ -93,20 +91,14 @@ const Main = (props) => {
                 </Card.Text>
               </Card.Body>
               <Card.Footer>
-                <OverlayTrigger overlay={<Tooltip>Coming Soon!!!</Tooltip>}>
-                  <span className="d-inline-block">
-                    <Button
-                      variant="outline-light"
-                      name="connections"
-                      onClick={pageChange}
-                      disabled
-                      className="mx-auto m-3"
-                      style={{ pointerEvents: "none" }}
-                    >
-                      Friends
-                    </Button>
-                  </span>
-                </OverlayTrigger>
+                <Button
+                  variant="outline-light"
+                  name="connections"
+                  onClick={pageChange}
+                  className="mx-auto m-3"
+                >
+                  Profile
+                </Button>
               </Card.Footer>
             </Card>
             <Card
@@ -120,20 +112,14 @@ const Main = (props) => {
                 </Card.Text>
               </Card.Body>
               <Card.Footer>
-                <OverlayTrigger overlay={<Tooltip>Coming Soon!!!</Tooltip>}>
-                  <span className="d-inline-block">
-                    <Button
-                      variant="outline-light"
-                      name="posts"
-                      onClick={pageChange}
-                      disabled
-                      className="mx-auto m-3"
-                      style={{ pointerEvents: "none" }}
-                    >
-                      Posts
-                    </Button>
-                  </span>
-                </OverlayTrigger>
+                <Button
+                  variant="outline-light"
+                  name="posts"
+                  onClick={pageChange}
+                  className="mx-auto m-3"
+                >
+                  Posts
+                </Button>
               </Card.Footer>
             </Card>
           </CardColumns>

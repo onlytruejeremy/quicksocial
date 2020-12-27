@@ -26,6 +26,7 @@ router.post("/", (req, res) => {
       //comparing hashed password
       if (await bcrypt.compare(req.body.password, userInfo.password)) {
         const person = {
+          userId: userInfo.userId,
           firstName: userInfo.firstName,
           lastName: userInfo.lastName,
           email: userInfo.email,

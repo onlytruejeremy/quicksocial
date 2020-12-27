@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/Auth";
 
 const SignInForm = (props) => {
-  const { setCurrentUser } = useContext(AuthContext);
+  const { setCurrentUser, currentUser } = useContext(AuthContext);
   const history = useHistory();
   const registerSchema = Yup.object().shape({
     email: Yup.string()
@@ -26,29 +26,30 @@ const SignInForm = (props) => {
     },
     validationSchema: registerSchema,
     onSubmit: (values) => {
-      userService
-        .loginUser(values)
-        .then((res) => {
-          const userInfo = res.data.accessToken;
-          if (userInfo !== null) {
-            userService
-              .getUserInfo(userInfo)
-              .then((res) => {
-                setCurrentUser(res.data);
-              })
-              .catch((err) => {
-                setCurrentUser(null);
-              });
-          } else {
-            setCurrentUser(null);
-          }
-          history.push("/");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      userService.loginUser(values).then(async (res) => {
+        const userInfo = res.data.accessToken;
+        if (userInfo !== null) {
+          userService
+            .getUserInfo(userInfo)
+            .then((res) => {
+              setCurrentUser(res.data);
+              history.push("/profile");
+            })
+            .catch((err) => {
+              setCurrentUser(null);
+            });
+        } else {
+          setCurrentUser(null);
+        }
+      });
+      setTimeout(() => {
+        if (currentUser == null) {
+          setErrMessage("Try Different Credentials");
+        }
+      }, 3000);
     },
   });
+  const [errMessage, setErrMessage] = React.useState("");
   return (
     <Collapse in appear>
       <Card className="bg-dark text-secondary mt-5 border border-primary text-left">
@@ -79,6 +80,7 @@ const SignInForm = (props) => {
               <span className="text-danger">
                 {SignInFormik.errors.password}
               </span>
+              <span className="text-danger">{errMessage}</span>
             </Form.Group>
             <Button variant="outline-primary" type="submit">
               Submit
