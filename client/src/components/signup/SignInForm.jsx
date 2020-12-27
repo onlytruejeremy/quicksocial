@@ -34,6 +34,7 @@ const SignInForm = (props) => {
             userService
               .getUserInfo(userInfo)
               .then((res) => {
+                alert(JSON.stringify(res.data));
                 setCurrentUser(res.data);
               })
               .catch((err) => {
