@@ -8,6 +8,7 @@ import {
   Container,
   CardColumns,
   Alert,
+  Row,
 } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 const Main = (props) => {
@@ -49,7 +50,7 @@ const Main = (props) => {
           <p>
             <Button
               variant="outline-light"
-              name="login"
+              name="connections"
               onClick={pageChange}
               className="mx-auto m-3 p-3"
             >
@@ -124,6 +125,22 @@ const Main = (props) => {
             </Card>
           </CardColumns>
         </CardDeck>
+        <Row className="ml-1 mr-1 mt-5 mb-5 w-100 mx-auto">
+          <Card className="bg-dark text-warning mx-auto w-100">
+            <Card.Header>
+              <h3>Under Development</h3>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text>
+                <h4 className="mr-auto text-left">What works?</h4>
+                <p className="mr-auto text-left">
+                  Currently you can register, make posts on your page and view
+                  the news!
+                </p>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Row>
       </Container>
     </>
   );

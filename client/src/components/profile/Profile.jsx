@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory, withRouter } from "react-router-dom";
 import { Container, Col, Row, Card, Button, Form } from "react-bootstrap";
 import MyPosts from "../posts/MyPosts";
+import { AuthContext } from "../../context/Auth";
 
 const Profile = (props) => {
   const history = useHistory();
@@ -15,6 +16,7 @@ const Profile = (props) => {
         break;
     }
   };
+  const { currentUser } = React.useContext(AuthContext);
   return (
     <Container className="mt-5 mx-auto">
       <Row>
@@ -22,7 +24,9 @@ const Profile = (props) => {
           <Card className="bg-dark border border-light text-light">
             <Card.Header className="m-3 p-1">
               <i className="fas fa-user fa-10x text-light"></i>
-              <Card.Text className="m-1 p-2">James Smith</Card.Text>
+              <Card.Text className="m-1 p-2">
+                {currentUser.firstName} {currentUser.lastName}
+              </Card.Text>
             </Card.Header>
             <Card.Body>
               <Card.Text>
@@ -52,7 +56,7 @@ const Profile = (props) => {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={8} className="mt-5 mb-5 ml-auto mt-auto">
+        <Col md={8} className="mt-5 mb-5">
           <Card className="bg-dark border border-light text-light">
             <Card.Header>
               <Card.Text>Quick Actions</Card.Text>
